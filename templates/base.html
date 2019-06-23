@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Theatres</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+<main role="main">
+    <div style="background:#ee93bb !important" style="font-weight:600"  class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Find theatres!</h1>
+            <p>Find theaters in your chosen city and find out detailed information about them!</p>
+            {% block jumbotron_custom %}{% endblock %}
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="container">
+    <p align="center">© ITMO University 2019 </p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+
+{% block footer_scripts %}{% endblock %}
+</body>
+</html>

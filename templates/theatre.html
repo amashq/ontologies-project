@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% import 'peoples.html' as macros %}
+
+{% block jumbotron_custom %}
+    <a href="{{ url_for('index') }}" style="background:#cccccc !important; font-weight:600 !important; color:#212529 !important; border: 1px outset black !important" class="btn btn-primary">Back to search</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if profile %}
+            <div class="row mb-5">
+                <div class="col-3">
+                    {% if 'thumbnail' in profile %}
+                        <img src="{{ profile['thumbnail']['value'] }}" alt="" class="img-fluid">
+                    {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                    {% endif %}
+                </div>
+                <div class="col-7">
+                    <h1 align="center">{{ profile['tLabel']['value'] }}</h1>
+                    <ul>
+                        {% if 'abstract' in profile %}
+                            <li><strong>Abstract: </strong>{{ profile['abstract']['value'] }}</li>
+                        {% endif %}
+                        {% if 'comment' in profile %}
+                            <li><strong>Comment: </strong>{{ profile['comment']['value'] }}</li>
+                        {% endif %}
+                        {% if 'countryLabel' in profile %}
+                            <li><strong>Address: </strong>{{ profile['countryLabel']['value'] }}
+                            {% if 'cityLabel' in profile %}
+                             {{ profile['cityLabel']['value'] }}
+                            {% endif %}
+                                {% if 'address' in profile %}
+                            {{ profile['address']['value'] }}</li>
+                                {% endif %}
+                        {% endif %}
+                        {% if 'site' in profile %}
+                          <li> <p class="card-text"><strong>Site: </strong> <a href="{{profile['site']['value']}}">{{profile['site']['value']}}</a></p></li>
+                        {% endif %}
+                    {% if 'wp' in profile %}
+                           <li> <p class="card-text"><strong>Wikipedia page: </strong> <a href="{{profile['wp']['value']}}">{{profile['wp']['value']}}</a></p></li>
+                        {% endif %}
+                        {% if 'geo' in profile %}
+                            <li><strong>Geo positional:</strong><br>{{ profile['geo']['value'] }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            {% if persons %}
+                <h2>Peoples</h2>
+                </div>
+                <div class="row">
+                <div class="card-group" style="width: 100%">
+                 {% if persons %}
+                        {% for person in persons %}
+                            {{ macros.card(person) }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <div style="background:#cccccc !important;  color:#212529 !important; border: 1px solid #a0a0a0 !important " class="alert alert-warning">No data about peoples</div>
+                </div>
+            {% endif %}
+            </div>
+    </div>
+{% endblock %}

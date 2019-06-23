@@ -1,0 +1,23 @@
+{% macro card(item) -%}
+    <div class="col-3 mb-3">
+        <div class="card">
+        <div style="height:300px; overflow: hidden;">
+            {% if item['thumbnail'] %}
+                <img class="card-img-top" src="{{ item['thumbnail']['value'] }}"
+                     alt="Card image cap" style="width:100%">
+            {% else %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                     alt="" style="width:100%">
+            {% endif %}
+        </div>
+            <div class="card-body">
+                <h5 align="center" class="card-title">{{ item['name']['value'] }}
+                </h5>
+                <p align="center" class="card-text"><strong>Birthday: </strong> {{ item['date']['value'] }}</p>
+                <p align="center" class="card-text"><strong>Info: </strong> <a href="{{ item['person']['value'] }}">{{ item['person']['value'] }}</a></p>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+{%- endmacro %}
